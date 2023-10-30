@@ -1,0 +1,23 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "description": "homework-1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "start:dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladM4526/node-js-1.git"
+  },
+  "author": "vladm20",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladM4526/node-js-1/issues"
+  },
+  "homepage": "https://github.com/VladM4526/node-js-1#readme",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
