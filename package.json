@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/VladM4526/node-js-1#readme",
   "dependencies": {
+    "commander": "^11.1.0",
     "nodemon": "^3.0.1"
   }
 }
