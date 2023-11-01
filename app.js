@@ -1,3 +1,3 @@
-const contacts = require("./contacts");
+const contacts = require("./contacts/contacts");
 
 console.log(contacts);
