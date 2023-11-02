@@ -1,17 +1,17 @@
 // contacts.js
 
-const fs = require("fs/promises");
+import fs from "fs/promises";
+import path from "path";
 
-const path = require("path");
-const contactsPath = path.join(__dirname, "./db/contacts.json");
+const contactsPath = path.resolve("db", "contacts.json");
 
-async function contactDate() {
+export const contactDate = async () => {
   const data = await fs.readFile(contactsPath);
   return JSON.parse(data);
-}
+};
 
 // TODO: задокументувати кожну функцію
-async function listContacts() {
+export const listContacts = async () => {
   // ...твій код. Повертає масив контактів.
   const contacts = await contactDate();
   const result = contacts.map((item) => {
@@ -24,7 +24,7 @@ async function listContacts() {
   });
 
   return console.table(result);
-}
+};
 
 async function getContactById(contactId) {
   // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
@@ -56,10 +56,3 @@ async function addContact(name, email, phone) {
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return console.log(newContact);
 }
-
-module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-};
