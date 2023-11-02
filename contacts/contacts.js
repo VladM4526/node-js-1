@@ -36,11 +36,14 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
   const contacts = await contactDate();
-  const index = contacts.filter((item) => item.id === contactId);
+  const index = contacts.findIndex((item) => item.id === contactId);
+  if (index === -1) {
+    return null;
+  }
 
-  const [result] = contacts.splice(-1, -1);
+  const [result] = contacts.splice(index, -1);
   await fs.writeFile(contactsPath, JSON.stringify(index, null, 2));
-  return result || null;
+  return result;
 }
 
 async function addContact(name, email, phone) {
