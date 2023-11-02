@@ -30,19 +30,17 @@ async function getContactById(contactId) {
   // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
   const contacts = await contactDate();
   const result = contacts.find((item) => item.id === contactId);
-  return console.log(result || null);
+  return result || null;
 }
 
 async function removeContact(contactId) {
   // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
   const contacts = await contactDate();
-  const index = contacts.findIndex((item) => item.id === contactId);
-  if (index === -1) {
-    return null;
-  }
-  const [result] = contacts.splice(index, 1);
+  const index = contacts.filter((item) => item.id === contactId);
+
+  const [result] = contacts.splice(-1, -1);
   await fs.writeFile(contactsPath, JSON.stringify(index, null, 2));
-  return console.log(result);
+  return result || null;
 }
 
 async function addContact(name, email, phone) {
