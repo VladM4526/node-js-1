@@ -1,4 +1,5 @@
-import * as contactDate from "./contacts/contacts.js";
+import { program } from "commander";
+import * as contactDate from "./contacts.js";
 
 // TODO: рефакторити
 const invokeAction = async ({ action, contactId, name, email, phone }) => {
@@ -12,14 +13,25 @@ const invokeAction = async ({ action, contactId, name, email, phone }) => {
 
     case "add":
       const newContact = await contactDate.addContact({ name, email, phone });
-      break;
+      return console.log(newContact);
 
     case "remove":
-      const removeContact = await contactDate.removeContact(contactId);
-      return console.log(removeContact);
+      const removeContacts = await contactDate.removeContact(contactId);
+      return console.log(removeContacts);
 
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
 };
-invokeAction();
+
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --contactId <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
+
+program.parse();
+
+const options = program.opts();
+invokeAction(options);
